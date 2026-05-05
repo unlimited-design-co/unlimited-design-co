@@ -944,11 +944,11 @@ const LOUNGEFLY_GALLERY = LOUNGEFLY_NAMES.map((n) =>
 const NEW_REALTOR_PITCH_DECK_IMAGES = [
   portfolioFile(
     'new-realtor-pitch-deck',
-    'NA Tri-Fold Brochures, {Size} Design Template-01.jpg',
+    'UNLIMITED DESIGN BROCHURE-01.jpg',
   ),
   portfolioFile(
     'new-realtor-pitch-deck',
-    'NA Tri-Fold Brochures, {Size} Design Template-02.jpg',
+    'UNLIMITED DESIGN BROCHURE-02.jpg',
   ),
 ];
 
