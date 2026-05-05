@@ -1283,7 +1283,7 @@ function About() {
             Beverly Lim —<br /><em>Creative Director</em> & Designer
           </h2>
           <p className="about-p">
-            I'm a freelance graphic designer with over 13 years of experience turning ideas into polished, purposeful visuals. My background spans licensed IP accessories design for Loungefly/Funko — distributed globally through BoxLunch and international retailers — children's apparel design, brand identity, and a growing specialty in real estate marketing.
+            I'm a graphic designer with over 13 years of experience turning ideas into polished, purposeful visuals. My background spans licensed IP accessories design for Loungefly/Funko — distributed globally through BoxLunch and international retailers — children's apparel design, brand identity, and a growing specialty in real estate marketing.
           </p>
           <p className="about-p">
             I'm also the Marketing Chair for the Monterey Park Chamber of Commerce and founder of <strong>Creative Futures</strong>, a design education initiative for local small business owners. I believe good design isn't a luxury — it's the difference between being noticed and being overlooked.
