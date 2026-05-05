@@ -859,9 +859,20 @@ function Hero() {
    PORTFOLIO
 ───────────────────────────────────── */
 
-const RE_SUITE_BOOKLETS = [1, 2, 3, 4, 5, 6, 9].map(
-  (n) =>
-    `/portfolio/real-estate-marketing-suite/BOOKLET_${String(n).padStart(2, '0')}.jpg`,
+/** JPGs under `public/portfolio/real-estate-marketing-suite/`. Bump `RE_SUITE_REVISION` whenever files are swapped so caches refresh. */
+const RE_SUITE_REVISION = '20260505';
+const REAL_ESTATE_MARKETING_SUITE_FILES = [
+  'BOOKLET_01.jpg',
+  'BOOKLET_02.jpg',
+  'BOOKLET_03.jpg',
+  'BOOKLET_04.jpg',
+  'BOOKLET_05.jpg',
+  'BOOKLET_06.jpg',
+  'BOOKLET_09.jpg',
+];
+const RE_SUITE_BOOKLETS = REAL_ESTATE_MARKETING_SUITE_FILES.map(
+  (filename) =>
+    `/portfolio/real-estate-marketing-suite/${encodeURIComponent(filename)}?v=${RE_SUITE_REVISION}`,
 );
 
 const LUNAR_BOOKLET_PAGES = Array.from({ length: 17 }, (_, i) => {
