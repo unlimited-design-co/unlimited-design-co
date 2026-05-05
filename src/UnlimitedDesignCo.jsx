@@ -979,11 +979,11 @@ const MISS_MONTEREY_PARK_PAGEANT_IMAGES = [
 
 /** MPCC Chamber event / email / mixer assets (`/public/portfolio/event-marketing-materials/`). */
 const EVENT_MARKETING_MATERIAL_FILENAMES = [
+  'HKBA DELTA MPCC.jpg',
   '01-26_STEAM FRESH.jpg',
   '2026 EASTER PROMO.jpg',
   'COFFEE MIXER 02-26.jpg',
   'COFFEE WITH THE CHAMBER.jpg',
-  'HKBA DELTA MPCC.jpg',
   'HOLIDAY INN MIXER 10_10.jpg',
   'LAW DAY 2026_Artboard 1.jpg',
   'LUNAR NEW YEAR_LETTER_FOR EMAIL.jpg',
