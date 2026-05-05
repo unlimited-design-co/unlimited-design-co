@@ -870,6 +870,88 @@ const LUNAR_BOOKLET_PAGES = Array.from({ length: 17 }, (_, i) => {
   return `/portfolio/lunar-new-year-booklet/${encodeURIComponent(file)}`;
 });
 
+/** URL path for a static file inside `public/portfolio/<folder>/` (handles spaces, braces, etc.). */
+function portfolioFile(folder, filename) {
+  return `/portfolio/${folder}/${encodeURIComponent(filename)}`;
+}
+
+/** Filenames align with `/public/portfolio/loungefly/`. GIFs appended after JPG sets. */
+const LOUNGEFLY_NAMES = [
+  'LOUNGEFLY PORTFOLIO-01.jpg',
+  'LOUNGEFLY PORTFOLIO-02.jpg',
+  'LOUNGEFLY PORTFOLIO-03.jpg',
+  'LOUNGEFLY PORTFOLIO-04.jpg',
+  'LOUNGEFLY PORTFOLIO-05.jpg',
+  'LOUNGEFLY PORTFOLIO-06.jpg',
+  'LOUNGEFLY PORTFOLIO-07.jpg',
+  'LOUNGEFLY PORTFOLIO-08.jpg',
+  'LOUNGEFLY PORTFOLIO-09.jpg',
+  'LOUNGEFLY PORTFOLIO-10.jpg',
+  'LOUNGEFLY PORTFOLIO-11.jpg',
+  'LOUNGEFLY PORTFOLIO-12.jpg',
+  'LOUNGEFLY PORTFOLIO-13.jpg',
+  'LOUNGEFLY PORTFOLIO-14.jpg',
+  'LOUNGEFLY PORTFOLIO-15.jpg',
+  'LOUNGEFLY PORTFOLIO-16.jpg',
+  'LOUNGEFLY PORTFOLIO-17.jpg',
+  'LOUNGEFLY PORTFOLIO-18.jpg',
+  'LOUNGEFLY PORTFOLIO-19.jpg',
+  'LOUNGEFLY PORTFOLIO-20.jpg',
+  'LOUNGEFLY PORTFOLIO-21.jpg',
+  'LOUNGEFLY PORTFOLIO-22.jpg',
+  'LOUNGEFLY PORTFOLIO-24.jpg',
+  'LOUNGEFLY PORTFOLIO-25.jpg',
+  'LOUNGEFLY PORTFOLIO-26.jpg',
+  'LOUNGEFLY PORTFOLIO-27.jpg',
+  'LOUNGEFLY PORTFOLIO.jpg',
+  'LOUNGEFLY PORTFOLIO_2-01.jpg',
+  'LOUNGEFLY PORTFOLIO_2-02.jpg',
+  'LOUNGEFLY PORTFOLIO_2-03.jpg',
+  'LOUNGEFLY PORTFOLIO_2-04.jpg',
+  'LOUNGEFLY PORTFOLIO_2-05.jpg',
+  'LOUNGEFLY PORTFOLIO_2-06.jpg',
+  'LOUNGEFLY PORTFOLIO_2-07.jpg',
+  'LOUNGEFLY PORTFOLIO_2-08.jpg',
+  'LOUNGEFLY PORTFOLIO_2-09.jpg',
+  'LOUNGEFLY PORTFOLIO_2-10.jpg',
+  'LOUNGEFLY PORTFOLIO_2-11.jpg',
+  'LOUNGEFLY PORTFOLIO_2-12.jpg',
+  'LOUNGEFLY PORTFOLIO_2-13.jpg',
+  'LOUNGEFLY PORTFOLIO_2-14.jpg',
+  'LOUNGEFLY PORTFOLIO_2-15.jpg',
+  'LOUNGEFLY PORTFOLIO_2-16.jpg',
+  'LOUNGEFLY PORTFOLIO_2-17.jpg',
+  'LOUNGEFLY PORTFOLIO_2-18.jpg',
+  'LOUNGEFLY PORTFOLIO_2-19.jpg',
+  'LOUNGEFLY PORTFOLIO_3-01.jpg',
+  'LOUNGEFLY PORTFOLIO_3-02.jpg',
+  'LOUNGEFLY PORTFOLIO_3-03.jpg',
+  'LOUNGEFLY PORTFOLIO_3-04.jpg',
+  'LOUNGEFLY PORTFOLIO_3-05.jpg',
+  'LOUNGEFLY PORTFOLIO_3-06.jpg',
+  'LOUNGEFLY PORTFOLIO_3-07.jpg',
+  'LOUNGEFLY PORTFOLIO_3-08.jpg',
+  'LOUNGEFLY-PORTFOLIO-23.gif',
+  'LOUNGEFLY-PORTFOLIO-24.gif',
+  'LOUNGEFLY-PORTFOLIO-26.gif',
+  'LOUNGEFLY-PORTFOLIO-28.gif',
+];
+
+const LOUNGEFLY_GALLERY = LOUNGEFLY_NAMES.map((n) =>
+  portfolioFile('loungefly', n),
+);
+
+const NEW_REALTOR_PITCH_DECK_IMAGES = [
+  portfolioFile(
+    'new-realtor-pitch-deck',
+    'NA Tri-Fold Brochures, {Size} Design Template-01.jpg',
+  ),
+  portfolioFile(
+    'new-realtor-pitch-deck',
+    'NA Tri-Fold Brochures, {Size} Design Template-02.jpg',
+  ),
+];
+
 /** Cards use `cover` for the grid; click opens optional `gallery` (defaults to `[cover]`). */
 const PROJECTS = [
   {
@@ -904,8 +986,8 @@ const PROJECTS = [
     title: 'Licensed IP Accessories Design',
     client: 'Loungefly / Funko',
     cat: 'ip',
-    cover:
-      'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=960&q=82',
+    cover: LOUNGEFLY_GALLERY[0],
+    gallery: LOUNGEFLY_GALLERY,
     tags: ['Accessories', 'Retail', 'IP'],
   },
   {
@@ -913,8 +995,8 @@ const PROJECTS = [
     title: 'Realtor Orientation Pitch Deck',
     client: 'West San Gabriel Valley Realtors',
     cat: 're',
-    cover: RE_SUITE_BOOKLETS[5] ?? RE_SUITE_BOOKLETS[0],
-    gallery: RE_SUITE_BOOKLETS,
+    cover: NEW_REALTOR_PITCH_DECK_IMAGES[0],
+    gallery: NEW_REALTOR_PITCH_DECK_IMAGES,
     tags: ['Presentation', 'Print'],
   },
   {
