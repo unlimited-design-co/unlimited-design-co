@@ -245,23 +245,24 @@ body {
   position: relative; overflow: hidden;
   border-radius: 3px; cursor: pointer; aspect-ratio: 4/3;
 }
-.port-card-bg {
+.port-card-fill {
+  width: 100%; height: 100%; position: relative;
+  background: #2f3f35;
+  transition: transform 0.55s ease;
+  transform-origin: center center;
+}
+.port-card:hover .port-card-fill { transform: scale(1.04); }
+.port-card-photo {
+  position: absolute; inset: 0;
   width: 100%; height: 100%;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 2rem; transition: transform 0.55s ease;
+  object-fit: cover;
+  display: block;
 }
-.port-card:hover .port-card-bg { transform: scale(1.04); }
-.port-card-icon {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic; font-size: 4.5rem;
-  line-height: 1; opacity: 0.4;
-  user-select: none; margin-bottom: 0.5rem;
-}
-.port-card-cat {
-  font-family: 'Jost', sans-serif;
-  font-weight: 600; font-size: 0.58rem;
-  letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.55;
+.port-card-fill::after {
+  content: '';
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(20,20,20,0.5) 0%, transparent 50%);
 }
 .port-overlay {
   position: absolute; inset: 0;
@@ -798,13 +799,60 @@ function Hero() {
 /* ─────────────────────────────────────
    PORTFOLIO
 ───────────────────────────────────── */
+/** Replace `cover` URLs with your own exports under `/public/portfolio/` when ready. Remote URLs are placeholders. */
 const PROJECTS = [
-  { id:1, title:"Real Estate Marketing Suite",       client:"Keller Williams Pasadena",      cat:"re",      bg:"linear-gradient(140deg,#2E4A35 0%,#4D7256 100%)",     accent:"#C4A870", icon:"⌂",  label:"Real Estate",  tags:["Print","Brand","Digital"] },
-  { id:2, title:"Chamber of Commerce Branding",      client:"Monterey Park Chamber of Commerce", cat:"brand",   bg:"linear-gradient(140deg,#7A9E7E 0%,#B8D4BA 100%)",    accent:"#2E4A35", icon:"✦",  label:"Brand Identity",  tags:["Logo","Print","Event"] },
-  { id:3, title:"Miss Monterey Park Pageant",        client:"MPCC Annual Event",              cat:"print",   bg:"linear-gradient(140deg,#1C1A3A 0%,#403588 100%)",     accent:"#C4A870", icon:"♛",  label:"Event Design", tags:["Flyer","Print","Event"] },
-  { id:4, title:"Licensed IP Accessories Design",    client:"Loungefly / Funko",              cat:"ip",      bg:"linear-gradient(140deg,#C07D82 0%,#E2A8AC 100%)",     accent:"#FAF8F4", icon:"◈",  label:"Licensed IP",  tags:["Accessories","Retail","IP"] },
-  { id:5, title:"Realtor Orientation Pitch Deck",   client:"West San Gabriel Valley Realtors",cat:"re",      bg:"linear-gradient(140deg,#3D3028 0%,#7A5C48 100%)",     accent:"#E2A8AC", icon:"◻",  label:"Real Estate",  tags:["Presentation","Print"] },
-  { id:6, title:"Event Marketing Materials",         client:"MPCC Law Day",                   cat:"print",   bg:"linear-gradient(140deg,#8B1A1A 0%,#C04040 100%)",     accent:"#FAF8F4", icon:"⚖",  label:"Event Design", tags:["Digital","Print","Event"] },
+  {
+    id: 1,
+    title: 'Real Estate Marketing Suite',
+    client: 'Keller Williams Pasadena',
+    cat: 're',
+    cover:
+      'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=960&q=82',
+    tags: ['Print', 'Brand', 'Digital'],
+  },
+  {
+    id: 2,
+    title: 'Chamber of Commerce Branding',
+    client: 'Monterey Park Chamber of Commerce',
+    cat: 'brand',
+    cover:
+      'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=960&q=82',
+    tags: ['Logo', 'Print', 'Event'],
+  },
+  {
+    id: 3,
+    title: 'Miss Monterey Park Pageant',
+    client: 'MPCC Annual Event',
+    cat: 'print',
+    cover: '/portfolio/mpk-pageant.jpg',
+    tags: ['Flyer', 'Print', 'Event'],
+  },
+  {
+    id: 4,
+    title: 'Licensed IP Accessories Design',
+    client: 'Loungefly / Funko',
+    cat: 'ip',
+    cover:
+      'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=960&q=82',
+    tags: ['Accessories', 'Retail', 'IP'],
+  },
+  {
+    id: 5,
+    title: 'Realtor Orientation Pitch Deck',
+    client: 'West San Gabriel Valley Realtors',
+    cat: 're',
+    cover:
+      'https://images.unsplash.com/photo-1542744173-8e7e53487bb9?auto=format&fit=crop&w=960&q=82',
+    tags: ['Presentation', 'Print'],
+  },
+  {
+    id: 6,
+    title: 'Event Marketing Materials',
+    client: 'MPCC Law Day',
+    cat: 'print',
+    cover: '/portfolio/mpk-law-day.jpg',
+    tags: ['Digital', 'Print', 'Event'],
+  },
 ];
 
 const FILTERS = [
@@ -837,9 +885,15 @@ function Portfolio() {
       <div className="port-grid">
         {shown.map(p => (
           <div key={p.id} className="port-card">
-            <div className="port-card-bg" style={{ background: p.bg }}>
-              <div className="port-card-icon" style={{ color: p.accent }}>{p.icon}</div>
-              <div className="port-card-cat" style={{ color: p.accent }}>{p.label}</div>
+            <div className="port-card-fill">
+              <img
+                className="port-card-photo"
+                src={p.cover}
+                alt={`Project preview — ${p.title}`}
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 900px) 100vw, 360px"
+              />
             </div>
             <div className="port-label">
               <h4>{p.title}</h4>
