@@ -471,6 +471,14 @@ body {
     radial-gradient(ellipse at 25% 25%, rgba(122,158,126,0.28) 0%, transparent 50%),
     radial-gradient(ellipse at 75% 70%, rgba(226,168,172,0.28) 0%, transparent 50%);
 }
+.about-logo {
+  position: relative; z-index: 1;
+  width: min(88%, 260px); height: auto;
+  object-fit: contain;
+  opacity: 0.9;
+  animation: floatB 8s ease-in-out infinite;
+  filter: drop-shadow(0 8px 24px rgba(122,158,126,0.14));
+}
 .about-badge {
   position: absolute; bottom: -1.5rem; right: -1.5rem;
   width: 58%; background: var(--sage-deeper);
@@ -652,83 +660,6 @@ body {
   .nav.scrolled { padding: 0.8rem 1.75rem; }
 }
 `;
-
-/* ─────────────────────────────────────
-   SVG: FULL ORCHID SPRAY
-───────────────────────────────────── */
-function OrchidSpray({ size = 420, style = {} }) {
-  return (
-    <svg width={size} height={size * 1.28} viewBox="0 0 420 540" fill="none" xmlns="http://www.w3.org/2000/svg" style={style}>
-      {/* Main stem */}
-      <path d="M210 480 Q202 410 196 330 Q190 250 206 165" stroke="#7A9E7E" strokeWidth="4.5" fill="none" strokeLinecap="round" opacity="0.65"/>
-      {/* Side stems */}
-      <path d="M200 220 Q162 188 128 165" stroke="#7A9E7E" strokeWidth="2.8" fill="none" strokeLinecap="round" opacity="0.5"/>
-      <path d="M198 265 Q234 230 265 210" stroke="#7A9E7E" strokeWidth="2.8" fill="none" strokeLinecap="round" opacity="0.5"/>
-      <path d="M202 305 Q168 282 142 272" stroke="#7A9E7E" strokeWidth="2.2" fill="none" strokeLinecap="round" opacity="0.4"/>
-      <path d="M204 340 Q238 318 258 308" stroke="#7A9E7E" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.35"/>
-
-      {/* FLOWER 1 – main center */}
-      <g transform="translate(165, 118)">
-        <ellipse cx="34" cy="-40" rx="20" ry="36" fill="#E2A8AC" opacity="0.88" transform="rotate(-12,34,-40)"/>
-        <ellipse cx="64" cy="-20" rx="20" ry="36" fill="#E2A8AC" opacity="0.88" transform="rotate(28,64,-20)"/>
-        <ellipse cx="64" cy="20" rx="20" ry="34" fill="#F0CDD0" opacity="0.82" transform="rotate(68,64,20)"/>
-        <ellipse cx="34" cy="40" rx="20" ry="30" fill="#F0CDD0" opacity="0.82" transform="rotate(108,34,40)"/>
-        <ellipse cx="4"  cy="20" rx="20" ry="36" fill="#E2A8AC" opacity="0.88" transform="rotate(148,4,20)"/>
-        <ellipse cx="34" cy="0" rx="16" ry="20" fill="#C07D82" opacity="0.92"/>
-        <ellipse cx="34" cy="4" rx="8"  ry="10" fill="#E8C4C8" opacity="1"/>
-        <circle cx="32" cy="-1" r="3" fill="#C4A870" opacity="0.9"/>
-        <circle cx="37" cy="2"  r="2" fill="#C4A870" opacity="0.75"/>
-      </g>
-
-      {/* FLOWER 2 – left branch, smaller */}
-      <g transform="translate(98, 125) scale(0.72)">
-        <ellipse cx="30" cy="-34" rx="18" ry="32" fill="#DDA8AC" opacity="0.8" transform="rotate(-15,30,-34)"/>
-        <ellipse cx="56" cy="-16" rx="18" ry="32" fill="#DDA8AC" opacity="0.8" transform="rotate(25,56,-16)"/>
-        <ellipse cx="56" cy="16" rx="18" ry="32" fill="#F0CDD0" opacity="0.75" transform="rotate(65,56,16)"/>
-        <ellipse cx="30" cy="34" rx="18" ry="28" fill="#F0CDD0" opacity="0.75" transform="rotate(105,30,34)"/>
-        <ellipse cx="4"  cy="16" rx="18" ry="32" fill="#DDA8AC" opacity="0.8" transform="rotate(145,4,16)"/>
-        <ellipse cx="30" cy="0" rx="15" ry="18" fill="#C07D82" opacity="0.88"/>
-        <ellipse cx="30" cy="4" rx="7"  ry="9"  fill="#E8C4C8" opacity="1"/>
-        <circle cx="28" cy="-1" r="2.5" fill="#C4A870" opacity="0.85"/>
-      </g>
-
-      {/* FLOWER 3 – right branch */}
-      <g transform="translate(232, 168) scale(0.78)">
-        <ellipse cx="28" cy="-32" rx="18" ry="30" fill="#D4ACBA" opacity="0.78" transform="rotate(-8,28,-32)"/>
-        <ellipse cx="52" cy="-14" rx="18" ry="30" fill="#E2A8AC" opacity="0.78" transform="rotate(32,52,-14)"/>
-        <ellipse cx="52" cy="14" rx="18" ry="30" fill="#E2A8AC" opacity="0.74" transform="rotate(72,52,14)"/>
-        <ellipse cx="28" cy="32" rx="18" ry="26" fill="#F0CDD0" opacity="0.74" transform="rotate(112,28,32)"/>
-        <ellipse cx="4"  cy="14" rx="18" ry="30" fill="#D4ACBA" opacity="0.78" transform="rotate(152,4,14)"/>
-        <ellipse cx="28" cy="0" rx="14" ry="18" fill="#C07D82" opacity="0.88"/>
-        <ellipse cx="28" cy="4" rx="7"  ry="9"  fill="#EDCDD0" opacity="1"/>
-        <circle cx="26" cy="-1" r="2.5" fill="#C4A870" opacity="0.85"/>
-      </g>
-
-      {/* FLOWER 4 – lower left, almost bud */}
-      <g transform="translate(112, 232) scale(0.6)">
-        <ellipse cx="25" cy="-28" rx="14" ry="26" fill="#E2A8AC" opacity="0.7" transform="rotate(-18,25,-28)"/>
-        <ellipse cx="46" cy="-12" rx="14" ry="26" fill="#E2A8AC" opacity="0.7" transform="rotate(22,46,-12)"/>
-        <ellipse cx="46" cy="12" rx="14" ry="24" fill="#F0CDD0" opacity="0.65" transform="rotate(62,46,12)"/>
-        <ellipse cx="25" cy="28" rx="14" ry="22" fill="#F0CDD0" opacity="0.65" transform="rotate(102,25,28)"/>
-        <ellipse cx="4"  cy="12" rx="14" ry="26" fill="#E2A8AC" opacity="0.7" transform="rotate(142,4,12)"/>
-        <ellipse cx="25" cy="0" rx="12" ry="15" fill="#C07D82" opacity="0.85"/>
-        <circle cx="23" cy="-1" r="2" fill="#C4A870" opacity="0.8"/>
-      </g>
-
-      {/* BUD */}
-      <g transform="translate(232, 267) scale(0.48)">
-        <ellipse cx="20" cy="0" rx="12" ry="26" fill="#E2A8AC" opacity="0.68"/>
-        <ellipse cx="20" cy="0" rx="12" ry="26" fill="none" stroke="#C07D82" strokeWidth="1.5" opacity="0.45"/>
-        <ellipse cx="20" cy="8" rx="7" ry="10" fill="#F0CDD0" opacity="0.55"/>
-      </g>
-
-      {/* Leaves */}
-      <ellipse cx="178" cy="462" rx="62" ry="24" fill="#7A9E7E" opacity="0.32" transform="rotate(-22,178,462)"/>
-      <ellipse cx="240" cy="478" rx="56" ry="22" fill="#4D7256" opacity="0.28" transform="rotate(14,240,478)"/>
-      <ellipse cx="190" cy="496" rx="50" ry="19" fill="#7A9E7E" opacity="0.22" transform="rotate(-4,190,496)"/>
-    </svg>
-  );
-}
 
 function MiniOrchid({ color = "#E2A8AC", style = {} }) {
   return (
@@ -1332,7 +1263,14 @@ function About() {
       <div className="about-wrap">
         <div className="about-visual">
           <div className="about-art">
-            <OrchidSpray size={260} style={{ opacity:0.7, animation:"floatB 8s ease-in-out infinite" }} />
+            <img
+              className="about-logo"
+              src="/udc-logo.svg"
+              alt="Unlimited Design Co."
+              width={260}
+              loading="lazy"
+              decoding="async"
+            />
           </div>
           <div className="about-badge">
             <div className="badge-num">13+</div>
@@ -1342,7 +1280,7 @@ function About() {
         <div className="about-right">
           <div className="eyebrow">About the Designer</div>
           <h2 className="about-title">
-            Bev Lim —<br /><em>Creative Director</em> & Designer
+            Beverly Lim —<br /><em>Creative Director</em> & Designer
           </h2>
           <p className="about-p">
             I'm a freelance graphic designer with over 13 years of experience turning ideas into polished, purposeful visuals. My background spans licensed IP accessories design for Loungefly/Funko — distributed globally through BoxLunch and international retailers — children's apparel design, brand identity, and a growing specialty in real estate marketing.
@@ -1453,7 +1391,7 @@ function Footer() {
           <li key={l}><a onClick={() => go(l)}>{l.charAt(0).toUpperCase() + l.slice(1)}</a></li>
         ))}
       </ul>
-      <div className="footer-copy">© 2025 Unlimited Design Co. · Bev Lim · Monterey Park, CA</div>
+      <div className="footer-copy">© 2025 Unlimited Design Co. · Beverly Lim · Monterey Park, CA</div>
     </footer>
   );
 }
