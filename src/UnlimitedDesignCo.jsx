@@ -190,6 +190,14 @@ body {
   align-items: center; justify-content: center; overflow: hidden;
   padding: 6rem 2rem;
 }
+.hero-logo {
+  width: min(100%, 440px);
+  max-width: 420px;
+  height: auto;
+  object-fit: contain;
+  animation: floatA 7s ease-in-out infinite;
+  filter: drop-shadow(0 10px 28px rgba(122,158,126,0.18));
+}
 
 /* SECTION BASE */
 .section { padding: 7.5rem 5.5rem; }
@@ -774,9 +782,13 @@ function Hero() {
         </div>
       </div>
       <div className="hero-visual">
-        <OrchidSpray
-          size={440}
-          style={{ animation: "floatA 7s ease-in-out infinite", filter: "drop-shadow(0 10px 28px rgba(122,158,126,0.18))" }}
+        <img
+          className="hero-logo"
+          src="/udc-logo.svg"
+          alt="Unlimited Design Co."
+          width={440}
+          loading="eager"
+          decoding="async"
         />
       </div>
     </section>
