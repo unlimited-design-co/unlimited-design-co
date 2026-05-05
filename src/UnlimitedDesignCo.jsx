@@ -874,8 +874,8 @@ const LUNAR_BOOKLET_PAGES = Array.from({ length: 17 }, (_, i) => {
 const PROJECTS = [
   {
     id: 1,
-    title: 'Real Estate Marketing Suite',
-    client: 'Keller Williams Pasadena',
+    title: 'Real Estate Booklet',
+    client: 'Realty Real Estate',
     cat: 're',
     cover: RE_SUITE_BOOKLETS[0],
     gallery: RE_SUITE_BOOKLETS,
@@ -892,7 +892,7 @@ const PROJECTS = [
   },
   {
     id: 3,
-    title: 'Miss Monterey Park Pageant',
+    title: 'Miss and Miss Teen Monterey Park Pageant',
     client: 'MPCC Annual Event',
     cat: 'print',
     cover: '/portfolio/mpk-pageant.jpg',
@@ -920,7 +920,7 @@ const PROJECTS = [
   {
     id: 6,
     title: 'Event Marketing Materials',
-    client: 'MPCC Miss Teen MPK & related flyers',
+    client: 'Monterey Park Chamber of Commerce',
     cat: 'print',
     cover: '/portfolio/mpk-miss-teen-pageant.jpg',
     gallery: [
