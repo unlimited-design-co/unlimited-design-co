@@ -301,6 +301,65 @@ body {
   font-size: 0.62rem; color: rgba(255,255,255,0.62);
   text-transform: uppercase; letter-spacing: 0.1em;
 }
+.port-card:focus-visible {
+  outline: 2px solid var(--sage-dark);
+  outline-offset: 3px;
+}
+.port-lightbox {
+  position: fixed; inset: 0; z-index: 12000;
+  background: rgba(20,22,21,0.88);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem 1rem;
+}
+.port-lightbox-inner {
+  position: relative; max-width: min(1100px, 96vw); max-height: 92vh;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0.85rem;
+}
+.port-lightbox-inner img {
+  max-width: 100%; max-height: min(78vh, 900px); width: auto; height: auto;
+  object-fit: contain;
+  border-radius: 3px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+}
+.port-lightbox-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+  color: var(--cream); text-align: center;
+}
+.port-lightbox-count {
+  font-family: 'Jost', sans-serif; font-size: 0.7rem;
+  letter-spacing: 0.12em; color: rgba(250,248,244,0.55);
+}
+.port-lightbox-close {
+  position: absolute; top: -2.75rem; right: 0;
+  background: none; border: none; color: var(--cream);
+  font-size: 2rem; line-height: 1; cursor: pointer; padding: 0.25rem;
+  opacity: 0.85; transition: opacity 0.2s;
+}
+.port-lightbox-close:hover { opacity: 1; }
+.port-lightbox-nav {
+  display: flex; gap: 1rem; align-items: center; justify-content: center;
+  flex-wrap: wrap;
+}
+.port-lightbox-nav button {
+  background: rgba(250,248,244,0.12); border: 1px solid rgba(122,158,126,0.35);
+  color: var(--cream); width: 2.6rem; height: 2.6rem;
+  border-radius: 2px; cursor: pointer; font-size: 1.35rem;
+  line-height: 1; transition: background 0.2s;
+}
+.port-lightbox-nav button:hover { background: rgba(122,158,126,0.25); }
+.port-lightbox-nav button:disabled {
+  opacity: 0.3; cursor: not-allowed;
+}
+.port-gallery-hint {
+  opacity: 0.78;
+  margin-bottom: 0.65rem;
+  font-size: 0.62rem !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  line-height: 1.4;
+}
 
 /* SERVICES */
 .svc-grid {
@@ -799,24 +858,36 @@ function Hero() {
 /* ─────────────────────────────────────
    PORTFOLIO
 ───────────────────────────────────── */
-/** Replace `cover` URLs with your own exports under `/public/portfolio/` when ready. Remote URLs are placeholders. */
+
+const RE_SUITE_BOOKLETS = [1, 2, 3, 4, 5, 6, 9].map(
+  (n) =>
+    `/portfolio/real-estate-marketing-suite/BOOKLET_${String(n).padStart(2, '0')}.jpg`,
+);
+
+const LUNAR_BOOKLET_PAGES = Array.from({ length: 17 }, (_, i) => {
+  const num = String(i + 1).padStart(2, '0');
+  const file = `FINAL_LNY BOOKLET 5_5_V3-${num}.jpg`;
+  return `/portfolio/lunar-new-year-booklet/${encodeURIComponent(file)}`;
+});
+
+/** Cards use `cover` for the grid; click opens optional `gallery` (defaults to `[cover]`). */
 const PROJECTS = [
   {
     id: 1,
     title: 'Real Estate Marketing Suite',
     client: 'Keller Williams Pasadena',
     cat: 're',
-    cover:
-      'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=960&q=82',
+    cover: RE_SUITE_BOOKLETS[0],
+    gallery: RE_SUITE_BOOKLETS,
     tags: ['Print', 'Brand', 'Digital'],
   },
   {
     id: 2,
     title: 'Chamber of Commerce Branding',
-    client: 'Monterey Park Chamber of Commerce',
+    client: 'Monterey Park Chamber of Commerce · Lunar New Year booklet',
     cat: 'brand',
-    cover:
-      'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=960&q=82',
+    cover: LUNAR_BOOKLET_PAGES[0],
+    gallery: LUNAR_BOOKLET_PAGES,
     tags: ['Logo', 'Print', 'Event'],
   },
   {
@@ -825,6 +896,7 @@ const PROJECTS = [
     client: 'MPCC Annual Event',
     cat: 'print',
     cover: '/portfolio/mpk-pageant.jpg',
+    gallery: ['/portfolio/mpk-pageant.jpg'],
     tags: ['Flyer', 'Print', 'Event'],
   },
   {
@@ -841,16 +913,20 @@ const PROJECTS = [
     title: 'Realtor Orientation Pitch Deck',
     client: 'West San Gabriel Valley Realtors',
     cat: 're',
-    cover:
-      'https://images.unsplash.com/photo-1542744173-8e7e53487bb9?auto=format&fit=crop&w=960&q=82',
+    cover: RE_SUITE_BOOKLETS[5] ?? RE_SUITE_BOOKLETS[0],
+    gallery: RE_SUITE_BOOKLETS,
     tags: ['Presentation', 'Print'],
   },
   {
     id: 6,
     title: 'Event Marketing Materials',
-    client: 'MPCC Law Day',
+    client: 'MPCC Miss Teen MPK & related flyers',
     cat: 'print',
-    cover: '/portfolio/mpk-law-day.jpg',
+    cover: '/portfolio/mpk-miss-teen-pageant.jpg',
+    gallery: [
+      '/portfolio/mpk-miss-teen-pageant.jpg',
+      '/portfolio/mpk-pageant.jpg',
+    ],
     tags: ['Digital', 'Print', 'Event'],
   },
 ];
@@ -865,50 +941,178 @@ const FILTERS = [
 
 function Portfolio() {
   const [active, setActive] = useState("all");
-  const shown = active === "all" ? PROJECTS : PROJECTS.filter(p => p.cat === active);
+  const [lightbox, setLightbox] = useState(null); // { title, urls: string[], i: number }
+
+  const shown =
+    active === "all" ? PROJECTS : PROJECTS.filter((p) => p.cat === active);
+
+  useEffect(() => {
+    function onKey(e) {
+      if (e.key === "Escape") {
+        setLightbox(null);
+        return;
+      }
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      setLightbox((s) => {
+        if (!s || s.urls.length < 2) return s;
+        if (e.key === "ArrowLeft")
+          return { ...s, i: (s.i - 1 + s.urls.length) % s.urls.length };
+        return { ...s, i: (s.i + 1) % s.urls.length };
+      });
+    }
+    if (!lightbox) return undefined;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [lightbox]);
+
+  const openGallery = (p) => {
+    const urls = p.gallery?.length ? p.gallery : [p.cover];
+    setLightbox({ title: p.title, urls, i: 0 });
+  };
+
   return (
     <section id="portfolio" className="section section-alt">
       <div className="sec-header">
         <div className="sec-eye">Selected Work</div>
-        <h2 className="sec-title">A <em>Portfolio</em> Built on Results</h2>
+        <h2 className="sec-title">
+          A <em>Portfolio</em> Built on Results
+        </h2>
         <p className="sec-desc">
           From real estate marketing suites to globally distributed licensed accessories — a sample of what we create.
         </p>
       </div>
       <div className="port-filters">
-        {FILTERS.map(f => (
-          <button key={f.id} className={`f-btn${active === f.id ? " on" : ""}`} onClick={() => setActive(f.id)}>
+        {FILTERS.map((f) => (
+          <button
+            key={f.id}
+            className={`f-btn${active === f.id ? " on" : ""}`}
+            onClick={() => setActive(f.id)}
+          >
             {f.label}
           </button>
         ))}
       </div>
       <div className="port-grid">
-        {shown.map(p => (
-          <div key={p.id} className="port-card">
-            <div className="port-card-fill">
-              <img
-                className="port-card-photo"
-                src={p.cover}
-                alt={`Project preview — ${p.title}`}
-                loading="lazy"
-                decoding="async"
-                sizes="(max-width: 900px) 100vw, 360px"
-              />
-            </div>
-            <div className="port-label">
-              <h4>{p.title}</h4>
-              <span>{p.client}</span>
-            </div>
-            <div className="port-overlay">
-              <h3>{p.title}</h3>
-              <p>{p.client}</p>
-              <div className="port-tags">
-                {p.tags.map(t => <span key={t} className="port-tag">{t}</span>)}
+        {shown.map((p) => {
+          const galleryCount =
+            (p.gallery?.length ? p.gallery : [p.cover]).length;
+          return (
+            <div
+              key={p.id}
+              className="port-card"
+              role="button"
+              tabIndex={0}
+              onClick={() => openGallery(p)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  openGallery(p);
+                }
+              }}
+              aria-label={`Open image gallery — ${p.title}`}
+            >
+              <div className="port-card-fill">
+                <img
+                  className="port-card-photo"
+                  src={p.cover}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(max-width: 900px) 100vw, 360px"
+                />
+              </div>
+              <div className="port-label">
+                <h4>{p.title}</h4>
+                <span>{p.client}</span>
+              </div>
+              <div className="port-overlay">
+                <h3>{p.title}</h3>
+                <p>{p.client}</p>
+                {galleryCount > 1 && (
+                  <p className="port-gallery-hint">
+                    Click for {galleryCount} images · use arrow keys when open
+                  </p>
+                )}
+                <div className="port-tags">
+                  {p.tags.map((t) => (
+                    <span key={t} className="port-tag">{t}</span>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
+
+      {lightbox && (
+        <div
+          className="port-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="port-lightbox-title"
+          onClick={() => setLightbox(null)}
+        >
+          <div
+            className="port-lightbox-inner"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button type="button" className="port-lightbox-close" onClick={() => setLightbox(null)} aria-label="Close gallery">
+              ×
+            </button>
+            <div id="port-lightbox-title" className="port-lightbox-title">
+              {lightbox.title}
+            </div>
+            <img
+              src={lightbox.urls[lightbox.i]}
+              alt={`${lightbox.title} — image ${lightbox.i + 1} of ${lightbox.urls.length}`}
+            />
+            {lightbox.urls.length > 1 && (
+              <>
+                <span className="port-lightbox-count">
+                  {lightbox.i + 1} / {lightbox.urls.length}
+                </span>
+                <div className="port-lightbox-nav">
+                  <button
+                    type="button"
+                    aria-label="Previous image"
+                    onClick={() =>
+                      setLightbox((s) =>
+                        !s
+                          ? s
+                          : {
+                              ...s,
+                              i:
+                                (s.i - 1 + s.urls.length) % s.urls.length,
+                            })
+                    }
+                  >
+                    ‹
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="Next image"
+                    onClick={() =>
+                      setLightbox((s) =>
+                        !s
+                          ? s
+                          : {
+                              ...s,
+                              i: (s.i + 1) % s.urls.length,
+                            })
+                    }
+                  >
+                    ›
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 }
