@@ -522,6 +522,13 @@ body {
   display: grid; grid-template-columns: 1fr 1.5fr;
   gap: 5.5rem; max-width: 1050px; margin: 0 auto; align-items: start;
 }
+.contact-logo-mark {
+  width: 92px;
+  height: auto;
+  display: block;
+  margin-bottom: 1.5rem;
+  opacity: 0.92;
+}
 .contact-h {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300; font-size: 2.3rem; line-height: 1.2;
@@ -537,6 +544,13 @@ body {
   gap: 0.75rem; font-size: 0.85rem; color: var(--text-mid); margin-bottom: 0.75rem;
 }
 .c-detail strong { color: var(--charcoal); font-weight: 500; }
+.c-detail a {
+  color: var(--sage-deeper);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(122,158,126,0.35);
+  transition: color 0.2s, border-color 0.2s;
+}
+.c-detail a:hover { color: var(--sage-dark); border-color: var(--sage-dark); }
 .c-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sage); flex-shrink: 0; }
 .c-note {
   margin-top: 2.25rem; padding: 1.4rem 1.5rem;
@@ -1320,12 +1334,25 @@ function Contact() {
     <section id="contact" className="section">
       <div className="contact-wrap">
         <div>
-          <MiniOrchid style={{ marginBottom:"1.5rem", opacity:0.75 }} />
+          <img
+            className="contact-logo-mark"
+            src="/udc-logo.svg"
+            alt="Unlimited Design Co."
+            width={96}
+            loading="lazy"
+            decoding="async"
+          />
           <h2 className="contact-h">Ready to <em>Elevate</em><br />Your Brand?</h2>
           <p className="contact-p">
             Whether you're a realtor looking for a full marketing suite or a business ready for a brand refresh — let's talk. Every great project starts with a conversation.
           </p>
-          <div className="c-detail"><div className="c-dot"/><span><strong>Email:</strong> hello@unlimiteddesignco.com</span></div>
+          <div className="c-detail">
+            <div className="c-dot" />
+            <span>
+              <strong>Email:</strong>{' '}
+              <a href="mailto:bevlim2468@gmail.com">bevlim2468@gmail.com</a>
+            </span>
+          </div>
           <div className="c-detail"><div className="c-dot"/><span><strong>Based in:</strong> Monterey Park, CA</span></div>
           <div className="c-detail"><div className="c-dot"/><span><strong>Serving:</strong> Real estate &amp; businesses nationwide</span></div>
           <div className="c-note">
