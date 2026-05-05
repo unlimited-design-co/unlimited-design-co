@@ -966,11 +966,24 @@ const MISS_MONTEREY_PARK_PAGEANT_IMAGES = [
   ),
 ];
 
-/** Chamber event tile: same promo pair only (omit sponsorship flyers). */
-const MPCC_PAGEANT_PROMO_PAIR = [
-  portfolioFile('miss-monterey-park-pageant', 'mpk-miss-teen-pageant.jpg'),
-  portfolioFile('miss-monterey-park-pageant', 'mpk-pageant.jpg'),
+/** MPCC Chamber event / email / mixer assets (`/public/portfolio/event-marketing-materials/`). */
+const EVENT_MARKETING_MATERIAL_FILENAMES = [
+  '01-26_STEAM FRESH.jpg',
+  '2026 EASTER PROMO.jpg',
+  'COFFEE MIXER 02-26.jpg',
+  'COFFEE WITH THE CHAMBER.jpg',
+  'HKBA DELTA MPCC.jpg',
+  'HOLIDAY INN MIXER 10_10.jpg',
+  'LAW DAY 2026_Artboard 1.jpg',
+  'LUNAR NEW YEAR_LETTER_FOR EMAIL.jpg',
+  'MPCC SUMMER INTERNSHIP 2026.jpg',
+  'NEW WEBSITE LAUNCH.jpg',
+  'RACE EPIDEMIC_LETTER_v3_letter copy.jpg',
 ];
+
+const EVENT_MARKETING_MATERIAL_IMAGES = EVENT_MARKETING_MATERIAL_FILENAMES.map((name) =>
+  portfolioFile('event-marketing-materials', name),
+);
 
 /** Cards use `cover` for the grid; click opens optional `gallery` (defaults to `[cover]`). */
 const PROJECTS = [
@@ -1024,8 +1037,8 @@ const PROJECTS = [
     title: 'Event Marketing Materials',
     client: 'Monterey Park Chamber of Commerce',
     cat: 'print',
-    cover: MPCC_PAGEANT_PROMO_PAIR[0],
-    gallery: MPCC_PAGEANT_PROMO_PAIR,
+    cover: EVENT_MARKETING_MATERIAL_IMAGES[0],
+    gallery: EVENT_MARKETING_MATERIAL_IMAGES,
     tags: ['Digital', 'Print', 'Event'],
   },
 ];
