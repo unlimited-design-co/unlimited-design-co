@@ -875,8 +875,9 @@ function portfolioFile(folder, filename) {
   return `/portfolio/${folder}/${encodeURIComponent(filename)}`;
 }
 
-/** Filenames align with `/public/portfolio/loungefly/`. GIFs appended after JPG sets. */
+/** Filenames align with `/public/portfolio/loungefly/`. `-10` first = grid cover + gallery start. GIFs appended after JPG sets. */
 const LOUNGEFLY_NAMES = [
+  'LOUNGEFLY PORTFOLIO-10.jpg',
   'LOUNGEFLY PORTFOLIO-01.jpg',
   'LOUNGEFLY PORTFOLIO-02.jpg',
   'LOUNGEFLY PORTFOLIO-03.jpg',
@@ -886,7 +887,6 @@ const LOUNGEFLY_NAMES = [
   'LOUNGEFLY PORTFOLIO-07.jpg',
   'LOUNGEFLY PORTFOLIO-08.jpg',
   'LOUNGEFLY PORTFOLIO-09.jpg',
-  'LOUNGEFLY PORTFOLIO-10.jpg',
   'LOUNGEFLY PORTFOLIO-11.jpg',
   'LOUNGEFLY PORTFOLIO-12.jpg',
   'LOUNGEFLY PORTFOLIO-13.jpg',
