@@ -956,6 +956,20 @@ const NEW_REALTOR_PITCH_DECK_IMAGES = [
 const MISS_MONTEREY_PARK_PAGEANT_IMAGES = [
   portfolioFile('miss-monterey-park-pageant', 'mpk-pageant.jpg'),
   portfolioFile('miss-monterey-park-pageant', 'mpk-miss-teen-pageant.jpg'),
+  portfolioFile(
+    'miss-monterey-park-pageant',
+    'MISS MPK MISS TEEN MPK SPONSORSHIP FLYER_v3-01.jpg',
+  ),
+  portfolioFile(
+    'miss-monterey-park-pageant',
+    'MISS MPK MISS TEEN MPK SPONSORSHIP FLYER_v3-02.jpg',
+  ),
+];
+
+/** Chamber event tile: same promo pair only (omit sponsorship flyers). */
+const MPCC_PAGEANT_PROMO_PAIR = [
+  portfolioFile('miss-monterey-park-pageant', 'mpk-miss-teen-pageant.jpg'),
+  portfolioFile('miss-monterey-park-pageant', 'mpk-pageant.jpg'),
 ];
 
 /** Cards use `cover` for the grid; click opens optional `gallery` (defaults to `[cover]`). */
@@ -1010,11 +1024,8 @@ const PROJECTS = [
     title: 'Event Marketing Materials',
     client: 'Monterey Park Chamber of Commerce',
     cat: 'print',
-    cover: MISS_MONTEREY_PARK_PAGEANT_IMAGES[1],
-    gallery: [
-      MISS_MONTEREY_PARK_PAGEANT_IMAGES[1],
-      MISS_MONTEREY_PARK_PAGEANT_IMAGES[0],
-    ],
+    cover: MPCC_PAGEANT_PROMO_PAIR[0],
+    gallery: MPCC_PAGEANT_PROMO_PAIR,
     tags: ['Digital', 'Print', 'Event'],
   },
 ];
