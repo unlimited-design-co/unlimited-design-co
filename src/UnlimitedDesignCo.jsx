@@ -952,6 +952,12 @@ const NEW_REALTOR_PITCH_DECK_IMAGES = [
   ),
 ];
 
+/** Miss + Miss Teen pageant flyers (`/public/portfolio/miss-monterey-park-pageant/`). */
+const MISS_MONTEREY_PARK_PAGEANT_IMAGES = [
+  portfolioFile('miss-monterey-park-pageant', 'mpk-pageant.jpg'),
+  portfolioFile('miss-monterey-park-pageant', 'mpk-miss-teen-pageant.jpg'),
+];
+
 /** Cards use `cover` for the grid; click opens optional `gallery` (defaults to `[cover]`). */
 const PROJECTS = [
   {
@@ -977,8 +983,8 @@ const PROJECTS = [
     title: 'Miss and Miss Teen Monterey Park Pageant',
     client: 'MPCC Annual Event',
     cat: 'print',
-    cover: '/portfolio/mpk-pageant.jpg',
-    gallery: ['/portfolio/mpk-pageant.jpg'],
+    cover: MISS_MONTEREY_PARK_PAGEANT_IMAGES[0],
+    gallery: MISS_MONTEREY_PARK_PAGEANT_IMAGES,
     tags: ['Flyer', 'Print', 'Event'],
   },
   {
@@ -1004,10 +1010,10 @@ const PROJECTS = [
     title: 'Event Marketing Materials',
     client: 'Monterey Park Chamber of Commerce',
     cat: 'print',
-    cover: '/portfolio/mpk-miss-teen-pageant.jpg',
+    cover: MISS_MONTEREY_PARK_PAGEANT_IMAGES[1],
     gallery: [
-      '/portfolio/mpk-miss-teen-pageant.jpg',
-      '/portfolio/mpk-pageant.jpg',
+      MISS_MONTEREY_PARK_PAGEANT_IMAGES[1],
+      MISS_MONTEREY_PARK_PAGEANT_IMAGES[0],
     ],
     tags: ['Digital', 'Print', 'Event'],
   },
