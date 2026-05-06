@@ -1353,8 +1353,8 @@ function Contact() {
               <a href="mailto:bevlim2468@gmail.com">bevlim2468@gmail.com</a>
             </span>
           </div>
-          <div className="c-detail"><div className="c-dot"/><span><strong>Based in:</strong> Monterey Park, CA</span></div>
-          <div className="c-detail"><div className="c-dot"/><span><strong>Serving:</strong> Real estate &amp; businesses nationwide</span></div>
+          <div className="c-detail"><div className="c-dot"/><span><strong>Based in:</strong> The San Gabriel Valley</span></div>
+          <div className="c-detail"><div className="c-dot"/><span><strong>Serving:</strong> Real estate & businesses nationwide</span></div>
           <div className="c-note">
             Currently accepting new real estate design clients. Reach out to check availability.
           </div>
@@ -1418,7 +1418,7 @@ function Footer() {
           <li key={l}><a onClick={() => go(l)}>{l.charAt(0).toUpperCase() + l.slice(1)}</a></li>
         ))}
       </ul>
-      <div className="footer-copy">© 2025 Unlimited Design Co. · Beverly Lim · Monterey Park, CA</div>
+      <div className="footer-copy">© 2025 Unlimited Design Co. · Beverly Lim · The San Gabriel Valley</div>
     </footer>
   );
 }
