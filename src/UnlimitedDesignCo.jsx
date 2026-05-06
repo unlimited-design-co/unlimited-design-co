@@ -897,10 +897,6 @@ const LOUNGEFLY_GALLERY = LOUNGEFLY_NAMES.map((n) =>
 const NEW_REALTOR_PITCH_DECK_IMAGES = [
   portfolioFile(
     'new-realtor-pitch-deck',
-    'UNLIMITED DESIGN BROCHURE.jpg',
-  ),
-  portfolioFile(
-    'new-realtor-pitch-deck',
     'UNLIMITED DESIGN BROCHURE-01.jpg',
   ),
   portfolioFile(
