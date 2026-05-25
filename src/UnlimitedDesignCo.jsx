@@ -3,6 +3,7 @@ import "./overhaul/overhaul.css";
 
 const LOGO = "/overhaul/logo.png";
 const FOOTER_LOGO = "/overhaul/UDC-LOGO.svg";
+const ABOUT_PHOTO = "/about/beverly-lim.jpg";
 
 const NAV = [
   { id: "home", label: "Home" },
@@ -352,6 +353,7 @@ export default function UnlimitedDesignCo() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
   const [lightbox, setLightbox] = useState(null);
+  const [aboutPhotoOk, setAboutPhotoOk] = useState(true);
 
   const openGallery = (item) => {
     const segments = getGallerySegments(item);
@@ -578,10 +580,28 @@ export default function UnlimitedDesignCo() {
       <section id="about" className="u-sec u-sage-sec" style={{ padding: "4rem 2rem" }}>
         <div className="u-sec-inner u-about-grid">
           <div>
-            <h2 className="u-ah2">
-              <span className="u-ah2-line">Beverly Lim —</span>
-              <em className="u-ah2-role">Creative Director</em>
-            </h2>
+            <div className="u-about-head">
+              <div
+                className={`u-about-photo-frame${aboutPhotoOk ? "" : " u-about-photo-frame--placeholder"}`}
+              >
+                {aboutPhotoOk ? (
+                  <img
+                    className="u-about-photo"
+                    src={ABOUT_PHOTO}
+                    alt="Beverly Lim, Creative Director"
+                    onError={() => setAboutPhotoOk(false)}
+                  />
+                ) : (
+                  <span className="u-about-photo-ph" aria-hidden="true">
+                    BL
+                  </span>
+                )}
+              </div>
+              <h2 className="u-ah2">
+                <span className="u-ah2-line">Beverly Lim —</span>
+                <em className="u-ah2-role">Creative Director</em>
+              </h2>
+            </div>
             <p className="u-ab">
               Graphic designer with 13+ years turning ideas into polished, purposeful visuals.
               Marketing Chair for the Monterey Park Chamber of Commerce, Creative Director for
